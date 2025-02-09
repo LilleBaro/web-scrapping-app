@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 def visualisation_portable():
-    df = pd.read_csv("C:/Users/msqur/Documents/Data Collection/webscrap_project/data/cleaned_telephone.csv")
+    df = pd.read_csv("data/cleaned_telephone.csv")
     sampled_df = df.sample(frac=0.1,replace=True)
     sns.set_theme()
     plt.figure(figsize=(30,20))

@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 def visualisation_home():
-    df = pd.read_csv("C:/Users/msqur/Documents/Data Collection/webscrap_project/data/cleaned_home_cinema.csv")
+    df = pd.read_csv("data/cleaned_home_cinema.csv")
     plt.figure(figsize=(16,10))
     scatter = sns.scatterplot(data=df,x="prix",y='dimension',hue="marque")
     plt.legend()

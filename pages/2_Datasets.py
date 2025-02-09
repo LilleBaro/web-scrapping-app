@@ -41,12 +41,12 @@ st.markdown('''<style> .stButton>button {
 
 if project == 'Ordinateur':
     load_data(pd.read_csv("data/ordinateur_expat.csv"), "Laptop data",pd.read_csv("data/cleaned_ordinateur_expat.csv"),"1")
-    set_background("C:/Users/msqur/Documents/Data Collection/webscrap_project/backgrounds/ordi_wallpaper.jpeg")
+    set_background("backgrounds/ordi_wallpaper.jpeg")
 elif project == "Portable":
     load_data(pd.read_csv("data/telephone_expat.csv"), "Smarphone data",pd.read_csv("data/cleaned_telephone.csv"),"2")
-    set_background("C:/Users/msqur/Documents/Data Collection/webscrap_project/backgrounds/phone_wallpaper.jpeg")
+    set_background("backgrounds/phone_wallpaper.jpeg")
 elif project == "Home cinema":
     load_data(pd.read_csv("data/home_cinema.csv"), "Home cinema data",pd.read_csv("data/cleaned_home_cinema.csv"),"3")
-    set_background("C:/Users/msqur/Documents/Data Collection/webscrap_project/backgrounds/home_cinema_wallpaper.jpeg")
+    set_background("backgrounds/home_cinema_wallpaper.jpeg")
 
 

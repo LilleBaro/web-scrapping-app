@@ -38,11 +38,11 @@ def show_home_scrapping_page():
 
 if project == "Scrapping d'ordinateurs":
     show_scrapping_page()
-    set_background("C:/Users/msqur/Documents/Data Collection/webscrap_project/backgrounds/ordi_wallpaper.jpeg")
+    set_background("backgrounds/ordi_wallpaper.jpeg")
 elif project == "Scrapping de telephone":
     show_tel_scrapping_page()
-    set_background("C:/Users/msqur/Documents/Data Collection/webscrap_project/backgrounds/phone_wallpaper.jpeg")
+    set_background("backgrounds/phone_wallpaper.jpeg")
 elif project == "Scrapping de home cinema":
     show_home_scrapping_page()
-    set_background("C:/Users/msqur/Documents/Data Collection/webscrap_project/backgrounds/home_cinema_wallpaper.jpeg")
+    set_background("backgrounds/home_cinema_wallpaper.jpeg")
 

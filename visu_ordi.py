@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 sns.set_theme()
 
 def visualisation_ordi():
-    df = pd.read_csv("C:/Users/msqur/Documents/Data Collection/webscrap_project/data/cleaned_ordinateur_expat.csv")  
+    df = pd.read_csv("data/cleaned_ordinateur_expat.csv")  
     
     sampled_df = df.sample(frac=0.1, replace=True)
     plt.figure(figsize=(20, 10))
