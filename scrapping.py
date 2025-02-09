@@ -1,11 +1,25 @@
 import pandas as pd
+import chromedriver_autoinstaller
 from selenium import webdriver 
 from selenium.webdriver.common.by import By 
-import streamlit as st
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+
 
 options = webdriver.ChromeOptions() 
 options.add_argument("--headless=new") 
 driver = webdriver.Chrome(options=options)
+
+chromedriver_autoinstaller.install()
+
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Exécute Chrome sans interface graphique
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+# Démarre le WebDriver
+service = Service()  
+driver = webdriver.Chrome(service=service, options=chrome_options)
 driver.get('https://www.expat-dakar.com/ordinateurs?page=1')
 containers = driver.find_elements(By.CSS_SELECTOR, "[class= 'listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
 def scrapping_ordi(pages):
