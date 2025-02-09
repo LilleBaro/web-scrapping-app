@@ -5,23 +5,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
-
-options = webdriver.ChromeOptions() 
-options.add_argument("--headless=new") 
-driver = webdriver.Chrome(options=options)
-
 chromedriver_autoinstaller.install()
 
+
 chrome_options = Options()
-chrome_options.add_argument("--headless")  # Exécute Chrome sans interface graphique
+chrome_options.add_argument("--headless")  
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
 # Démarre le WebDriver
 service = Service()  
 driver = webdriver.Chrome(service=service, options=chrome_options)
-driver.get('https://www.expat-dakar.com/ordinateurs?page=1')
-containers = driver.find_elements(By.CSS_SELECTOR, "[class= 'listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
+
 def scrapping_ordi(pages):
     data =[]
     for i in range(pages):
@@ -43,6 +38,7 @@ def scrapping_ordi(pages):
             except:
                 pass
         df_ordi = pd.DataFrame(data)
+        driver.quit()
     return df_ordi
 
 def scrapping_home(pages):
@@ -66,6 +62,7 @@ def scrapping_home(pages):
             except:
                 pass
         df_home_cine = pd.DataFrame(data)
+        driver.quit()
     return df_home_cine  
 
 def scrapping_portable(pages):
@@ -89,4 +86,5 @@ def scrapping_portable(pages):
             except:
                 pass
         df_portable = pd.DataFrame(data)
+        driver.quit()
     return df_portable
