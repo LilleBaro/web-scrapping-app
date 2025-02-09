@@ -1,0 +1,10 @@
+numpy
+base64
+requests
+scipy
+matplotlib
+pandas
+streamlit
+seaborn
+pybase64
+selenium
