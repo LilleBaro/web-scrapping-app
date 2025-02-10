@@ -11,7 +11,8 @@ from selenium.common.exceptions import NoSuchElementException
 options = Options()
 options.add_argument("--headless")  # Mode sans interface graphique
 service = Service(executable_path="chromedriver")  # Assurez-vous que chromedriver est installé
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+driver = webdriver.Chrome(service=Service("C:\\Users\\msqur\\Documents\\chromedriver_win32\\"), options=options)
+
 def scrapping_ordi(pages):
     data =[]
     for i in range(1,pages+1):
