@@ -1,20 +1,17 @@
 import pandas as pd
-import streamlit as st
-import chromedriver_autoinstaller
-from selenium.webdriver.common.by import By 
-from selenium import webdriver 
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from webdriver_manager.firefox import GeckoDriverManager
 
-firefox_options = FirefoxOptions()
-firefox_options.add_argument("--headless")  
-
-service = FirefoxService(GeckoDriverManager().install())
-driver = webdriver.Firefox(service=service, options=firefox_options)
-
+# Initialisation du navigateur Selenium
+options = Options()
+options.add_argument("--headless")  # Mode sans interface graphique
+service = Service(executable_path="chromedriver")  # Assurez-vous que chromedriver est installé
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 def scrapping_ordi(pages):
     data =[]
     for i in range(1,pages+1):
