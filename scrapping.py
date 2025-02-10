@@ -1,21 +1,33 @@
 import pandas as pd
+import streamlit as st
 import chromedriver_autoinstaller
 from selenium import webdriver 
 from selenium.webdriver.common.by import By 
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
+
 
 chromedriver_autoinstaller.install()
 
 
-chrome_options = Options()
-chrome_options.add_argument("--headless")  
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+@st.cache_resource
+def get_driver():
+    return webdriver.Chrome(
+        service=Service(
+            ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+        ),
+        options=options,
+    )
 
-# Démarre le WebDriver
-service = Service()  
-driver = webdriver.Chrome(service=service, options=chrome_options)
+
+options = Options()
+options.add_argument("--disable-gpu")
+options.add_argument("--headless")
+
+driver = get_driver()
+st.code(driver.page_source)
 
 def scrapping_ordi(pages):
     data =[]
