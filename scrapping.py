@@ -1,25 +1,28 @@
 import pandas as pd
 import streamlit as st
 import chromedriver_autoinstaller
-from selenium import webdriver 
 from selenium.webdriver.common.by import By 
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver 
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.os_manager import ChromeType
 
-
-chromedriver_autoinstaller.install()
-
+# Configurer les options de Chrome
 chrome_options = Options()
 chrome_options.add_argument("--headless")  
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
-chrome_options.binary_location = "C:/Program Files/Google/Chrome/Application"
+# Vérifier le bon chemin de Chrome
+chrome_options.binary_location = "C:/Program Files/Google/Chrome/Application/chrome.exe"
 
-service = Service()
+# Télécharger et utiliser ChromeDriver avec WebDriver Manager
+service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
+
+print("✅ Chrome lancé avec succès !")
+driver.quit()
 
 def scrapping_ordi(pages):
     data =[]
