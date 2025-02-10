@@ -16,6 +16,7 @@ def show_scrapping_page():
         df = scrapping.scrapping_ordi(pages_scrapper)
         st.dataframe(df)
 
+
 def show_tel_scrapping_page():
     st.title("Scrapping de données de téléphone portable")
     pages_scrapper = st.slider("Combien de pages voulez-vous scrapper?",
