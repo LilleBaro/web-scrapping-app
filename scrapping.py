@@ -11,23 +11,15 @@ from webdriver_manager.core.os_manager import ChromeType
 
 chromedriver_autoinstaller.install()
 
+chrome_options = Options()
+chrome_options.add_argument("--headless")  
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
-@st.cache_resource
-def get_driver():
-    return webdriver.Chrome(
-        service=Service(
-            ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-        ),
-        options=options,
-    )
+chrome_options.binary_location = "C:/Program Files/Google/Chrome/Application"
 
-
-options = Options()
-options.add_argument("--disable-gpu")
-options.add_argument("--headless")
-
-driver = get_driver()
-st.code(driver.page_source)
+service = Service()
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def scrapping_ordi(pages):
     data =[]
