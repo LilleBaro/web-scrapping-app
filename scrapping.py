@@ -10,8 +10,8 @@ from selenium.common.exceptions import NoSuchElementException
 # Initialisation du navigateur Selenium
 options = Options()
 options.add_argument("--headless")  # Mode sans interface graphique
-service = Service(executable_path="chromedriver")  # Assurez-vous que chromedriver est installé
-driver = webdriver.Chrome(service=Service("C:\\Users\\msqur\\Documents\\chromedriver_win32\\"), options=options)
+service = Service("C:\\Users\\msqur\\Documents\\chromedriver_win32\\chromedriver.exe")
+driver = webdriver.Chrome(service=service, options=options)
 
 def scrapping_ordi(pages):
     data =[]
@@ -34,7 +34,6 @@ def scrapping_ordi(pages):
             except NoSuchElementException as e:
                 print(f"Elements introuvable")
         df_ordi = pd.DataFrame(data)
-        driver.quit()
     return df_ordi
 
 def scrapping_home(pages):
@@ -58,7 +57,6 @@ def scrapping_home(pages):
             except NoSuchElementException as e:
                 print(f"Elements introuvable")
         df_home_cine = pd.DataFrame(data)
-        driver.quit()
     return df_home_cine  
 
 def scrapping_portable(pages):
@@ -82,5 +80,4 @@ def scrapping_portable(pages):
             except NoSuchElementException as e:
                 print(f"Elements introuvable")
         df_portable = pd.DataFrame(data)
-        driver.quit()
     return df_portable
