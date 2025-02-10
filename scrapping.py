@@ -22,76 +22,101 @@ chrome_options.binary_location = "C:/Program Files/Google/Chrome/Application/chr
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-print("✅ Chrome lancé avec succès !")
+
+
+from selenium.common.exceptions import NoSuchElementException
 
 def scrapping_ordi(pages):
-    data =[]
+    data = []
+    
     for i in range(pages):
         driver.get(f"https://www.expat-dakar.com/ordinateurs?page={i}")
-        containers = driver.find_elements(By.CSS_SELECTOR, "[class= 'listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
+        
+        containers = driver.find_elements(By.CSS_SELECTOR, 
+            "[class='listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
+        
         for container in containers:
-            link_element = container.find_element(By.CSS_SELECTOR, 'a')
-            header = container.find_element(By.CSS_SELECTOR,"[class= 'listing-card__header__tags']")
-            img_link= container.find_element(By.CSS_SELECTOR,"[class='listing-card__image__resource vh-img']")
             try:
-                details = link_element.get_attribute('data-t-listing_title')
-                etat = header.find_element(By.CSS_SELECTOR, "[class^='listing-card__header__tags__item listing-card__header__tags__item--condition']").text
-                marque = header.find_element(By.CSS_SELECTOR, "[class^='listing-card__header__tags__item listing-card__header__tags__item--make listing-card__header__tags__item--make']").text
-                adresse = link_element.get_attribute("data-t-listing_location_title")
-                prix = link_element.get_attribute("data-t-listing_price")
-                image_lien = img_link.get_attribute('src')
-                dic = {'details':details,'etat':etat,'marque':marque,'prix':prix,"adresse":adresse,"lien image":image_lien}
-                data.append(dic)
-            except NoSuchElementException as e:
-                print(f"Elements introuvable")
-        df_ordi = pd.DataFrame(data)
-        driver.quit()
-    return df_ordi
+                link_element = container.find_element(By.CSS_SELECTOR, 'a')
+                header = container.find_element(By.CSS_SELECTOR, "[class='listing-card__header__tags']")
+                img_link = container.find_element(By.CSS_SELECTOR, "[class='listing-card__image__resource vh-img']")
+                
+                data.append({
+                    'details': link_element.get_attribute('data-t-listing_title'),
+                    'etat': header.find_element(By.CSS_SELECTOR, 
+                        "[class^='listing-card__header__tags__item--condition']").text,
+                    'marque': header.find_element(By.CSS_SELECTOR, 
+                        "[class^='listing-card__header__tags__item--make']").text,
+                    'adresse': link_element.get_attribute("data-t-listing_location_title"),
+                    'prix': link_element.get_attribute("data-t-listing_price"),
+                    'lien image': img_link.get_attribute("src")
+                })
+            except NoSuchElementException:
+                pass  
+    driver.quit()  
+    return pd.DataFrame(data)  
+
 
 def scrapping_home(pages):
-    data =[]
+    data = []
+    
     for i in range(pages):
         driver.get(f"https://www.expat-dakar.com/tv-home-cinema?page={i}")
-        containers = driver.find_elements(By.CSS_SELECTOR, "[class= 'listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
+        
+        containers = driver.find_elements(By.CSS_SELECTOR, 
+            "[class='listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
+        
         for container in containers:
-            img_link= container.find_element(By.CSS_SELECTOR,"[class='listing-card__image__resource vh-img']")
-            link_element = container.find_element(By.CSS_SELECTOR, 'a')
-            header = container.find_element(By.CSS_SELECTOR,"[class= 'listing-card__header__tags']")
             try:
-                details = link_element.get_attribute('data-t-listing_title')
-                etat = header.find_element(By.CSS_SELECTOR, "[class^='listing-card__header__tags__item listing-card__header__tags__item--condition']").text
-                marque = header.find_element(By.CSS_SELECTOR, "[class^='listing-card__header__tags__item listing-card__header__tags__item--make listing-card__header__tags__item--make']").text
-                adresse = link_element.get_attribute("data-t-listing_location_title")
-                prix = link_element.get_attribute("data-t-listing_price")
-                lien_image = img_link.get_attribute("src")
-                dic = {'details':details,'etat':etat,'marque':marque,'prix':prix,"adresse":adresse,"lien image":lien_image}
-                data.append(dic)
-            except NoSuchElementException as e:
-                print(f"Elements introuvable")
-        df_home_cine = pd.DataFrame(data)
-        driver.quit()
-    return df_home_cine  
+                link_element = container.find_element(By.CSS_SELECTOR, 'a')
+                header = container.find_element(By.CSS_SELECTOR, "[class='listing-card__header__tags']")
+                img_link = container.find_element(By.CSS_SELECTOR, "[class='listing-card__image__resource vh-img']")
+                
+                data.append({
+                    'details': link_element.get_attribute('data-t-listing_title'),
+                    'etat': header.find_element(By.CSS_SELECTOR, 
+                        "[class^='listing-card__header__tags__item--condition']").text,
+                    'marque': header.find_element(By.CSS_SELECTOR, 
+                        "[class^='listing-card__header__tags__item--make']").text,
+                    'adresse': link_element.get_attribute("data-t-listing_location_title"),
+                    'prix': link_element.get_attribute("data-t-listing_price"),
+                    'lien image': img_link.get_attribute("src")
+                })
+            except NoSuchElementException:
+                pass  
+
+    driver.quit()
+    return pd.DataFrame(data) 
+
 
 def scrapping_portable(pages):
-    data =[]
+    data = []
+    
     for i in range(pages):
         driver.get(f"https://www.expat-dakar.com/telephones?page={i}")
-        containers = driver.find_elements(By.CSS_SELECTOR, "[class= 'listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
+        
+        containers = driver.find_elements(By.CSS_SELECTOR, 
+            "[class='listing-card listing-card--tab listing-card--has-contact listing-card--has-content']")
+        
         for container in containers:
-            link_element = container.find_element(By.CSS_SELECTOR, 'a')
-            header = container.find_element(By.CSS_SELECTOR,"[class= 'listing-card__header__tags']")
-            img_link= container.find_element(By.CSS_SELECTOR,"[class='listing-card__image__resource vh-img']")
             try:
-                details = link_element.get_attribute('data-t-listing_title')
-                etat = header.find_element(By.CSS_SELECTOR, "[class^='listing-card__header__tags__item listing-card__header__tags__item--condition']").text
-                marque = header.find_element(By.CSS_SELECTOR, "[class^='listing-card__header__tags__item listing-card__header__tags__item--make listing-card__header__tags__item--make']").text
-                adresse = link_element.get_attribute("data-t-listing_location_title")
-                prix = link_element.get_attribute("data-t-listing_price")
-                lien_image = img_link.get_attribute("src")
-                dic = {'details':details,'etat':etat,'marque':marque,'prix':prix,"adresse":adresse,"lien image":lien_image}
-                data.append(dic)
-            except NoSuchElementException as e:
-                print(f"Elements introuvable")
-        df_portable = pd.DataFrame(data)
-        driver.quit()
-    return df_portable
+                link_element = container.find_element(By.CSS_SELECTOR, 'a')
+                header = container.find_element(By.CSS_SELECTOR, "[class='listing-card__header__tags']")
+                img_link = container.find_element(By.CSS_SELECTOR, "[class='listing-card__image__resource vh-img']")
+                
+                data.append({
+                    'details': link_element.get_attribute('data-t-listing_title'),
+                    'etat': header.find_element(By.CSS_SELECTOR, 
+                        "[class^='listing-card__header__tags__item--condition']").text,
+                    'marque': header.find_element(By.CSS_SELECTOR, 
+                        "[class^='listing-card__header__tags__item--make']").text,
+                    'adresse': link_element.get_attribute("data-t-listing_location_title"),
+                    'prix': link_element.get_attribute("data-t-listing_price"),
+                    'lien image': img_link.get_attribute("src")
+                })
+            except NoSuchElementException:
+                pass  
+
+    driver.quit()  
+    return pd.DataFrame(data)  
+
