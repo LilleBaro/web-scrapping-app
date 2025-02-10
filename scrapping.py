@@ -10,14 +10,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 
 # Configurer les options de Chrome
-chrome_options = Options()
-chrome_options.add_argument("--headless")  
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
-
-
-service = Service(executable_path="chromedriver")
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+options = Options()
+options.add_argument("--headless")  # Mode sans interface graphique
+service = Service(executable_path="chromedriver")  # Assurez-vous que chromedriver est installé
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 
 def scrapping_ordi(pages):
