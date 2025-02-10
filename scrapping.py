@@ -7,12 +7,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 
 
-# Initialisation du navigateur Selenium
-options = Options()
-options.add_argument("--headless")  # Mode sans interface graphique
-service = webdriver.ChromeService(executable_path="C:\\Users\\msqur\Documents\\chromedriver_win32\\")
+options = webdriver.ChromeOptions()
+options.add_argument("--headless=new")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
 
-driver = webdriver.Chrome(service=service, options=options)
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
 
 def scrapping_ordi(pages):
     data =[]
@@ -82,3 +83,5 @@ def scrapping_portable(pages):
                 print(f"Elements introuvable")
         df_portable = pd.DataFrame(data)
     return df_portable
+
+
