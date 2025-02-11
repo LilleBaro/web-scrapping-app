@@ -13,7 +13,6 @@ def scrapping_ordi(pages):
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    ChromeDriverManager().install()
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
     data =[]
@@ -43,7 +42,6 @@ def scrapping_home(pages):
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    ChromeDriverManager().install()
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
 
@@ -74,7 +72,6 @@ def scrapping_portable(pages):
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    ChromeDriverManager().install()
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
 
