@@ -3,6 +3,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By 
 import scrapping
 from wallpaper import set_background
+import pandas as pd
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import NoSuchElementException
+
+
 
 project = st.sidebar.selectbox("Quelles données voulez vous scrapper?",("Scrapping d'ordinateurs","Scrapping de telephone","Scrapping de home cinema"))
 
