@@ -13,7 +13,7 @@ def scrapping_ordi(pages):
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    service = Service(ChromeDriverManager().install())
+    service = Service(ChromeDriverManager(version="120.0.6099.224").install())
     driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
     data =[]
     for i in range(1,pages+1):
@@ -42,7 +42,7 @@ def scrapping_home(pages):
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    service = Service(ChromeDriverManager().install())
+    service = Service(ChromeDriverManager(version="120.0.6099.224").install())
     driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
 
     data =[]
@@ -72,7 +72,7 @@ def scrapping_portable(pages):
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    service = Service(ChromeDriverManager().install())
+    service = Service(ChromeDriverManager(version="120.0.6099.224").install())
     driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
 
     data =[]
