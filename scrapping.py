@@ -7,15 +7,15 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 
 
-options = webdriver.ChromeOptions()
-options.add_argument("--headless=new")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
 
 def scrapping_ordi(pages):
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
     data =[]
     for i in range(1,pages+1):
         driver.get(f"https://www.expat-dakar.com/ordinateurs?page={i}")
@@ -36,9 +36,18 @@ def scrapping_ordi(pages):
             except NoSuchElementException as e:
                 print(f"Elements introuvable")
         df_ordi = pd.DataFrame(data)
+        driver.quit()
     return df_ordi
 
 def scrapping_home(pages):
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
+
     data =[]
     for i in range(1,pages+1):
         driver.get(f"https://www.expat-dakar.com/tv-home-cinema?page={i}")
@@ -59,9 +68,18 @@ def scrapping_home(pages):
             except NoSuchElementException as e:
                 print(f"Elements introuvable")
         df_home_cine = pd.DataFrame(data)
+        driver.quit()
     return df_home_cine  
 
 def scrapping_portable(pages):
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)  # Ajout des options ici
+
     data =[]
     for i in range(1,pages+1):
         driver.get(f"https://www.expat-dakar.com/telephones?page={i}")
@@ -82,6 +100,7 @@ def scrapping_portable(pages):
             except NoSuchElementException as e:
                 print(f"Elements introuvable")
         df_portable = pd.DataFrame(data)
+        driver.quit()
     return df_portable
 
 
